@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\models\Subject;
+use app\models\QuestionType;
 use app\models\Question;
 
 /* @var $this yii\web\View */
@@ -51,10 +52,22 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'subject_title',
                         'value' => Subject::getSubjectTitle($model->subject_id)
                     ],
-                    'question_difficult',
-                    'question_content:ntext',
                     [
-                        'question_type_title',
+
+                        'label' => 'Сложность вопроса',
+                        'attribute' => 'question_difficult',
+                        'value' => $model->question_difficult
+                    ],
+                    [
+
+                        'label' => 'Вопрос',
+                        'attribute' => 'question_content:ntext',
+                        'value' => $model->question_content
+                    ],
+                    [
+                        'label' => 'Тип вопроса',
+                        'attribute' => 'question_type_title',
+                        'value' => QuestionType::getQuestionTypeTitle($model->question_type_id)
                     ]
                     //'creator_id',
                 ],

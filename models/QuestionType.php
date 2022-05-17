@@ -53,4 +53,10 @@ class QuestionType extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Question::className(), ['question_type_id' => 'question_type_id']);
     }
+
+    public static function getQuestionTypeTitle($question_type_id)
+    {
+        //return $this->hasOne(Subject::className(), ['subject_id' => 'subject_id']);
+        return static::findOne(['question_type_id' => $question_type_id])->question_type_title;
+    }
 }
