@@ -99,5 +99,7 @@ class Question extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Subject::className(), ['subject_id' => 'subject_id']);
     }
+
+    
     
 }

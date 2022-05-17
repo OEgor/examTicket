@@ -23,11 +23,9 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body>
-<?php $this->beginBody() ?>
 
 <header>
-<?php
+    <?php
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
@@ -46,7 +44,7 @@ AppAsset::register($this);
                 ['label' => 'Contact', 'url' => ['/site/contact']],
                 ['label' => 'Вопросы', 'url' => ['/question/index']],   
                 ['label' => 'Logout('. Yii::$app->user->identity->username . ')', 'url' => ['/site/logout'], 'linkOptions' =>['data-method' => 'post']],
-                ];
+            ];
         }
         else
         {
@@ -57,7 +55,7 @@ AppAsset::register($this);
                 ['label' => 'Вопросы', 'url' => ['/question/index']],  
                 ['label' => 'Logout('. Yii::$app->user->identity->username . ')', 'url' => ['site/logout'], 'linkOptions' =>['data-method' => 'post']],
             ];
-
+            
         }
     }
     else
@@ -76,6 +74,9 @@ AppAsset::register($this);
     ?>
 </header>
 
+<body>
+<?php $this->beginBody() ?>
+
 <main role="main" class="flex-shrink-0">
     <div class="container">
             <?= Breadcrumbs::widget([
@@ -91,14 +92,14 @@ AppAsset::register($this);
 </main>
 
 
-<footer class="footer mt-auto py-3 text-muted fixed-bottom">
+<?php $this->endBody() ?>
+</body>
+<footer class="footer mt-auto py-3 text-muted">
     <div class="container">
-        <p class="float-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="float-left">&copy; ИМИ <?= date('Y') ?></p>
         <p class="float-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
 
-<?php $this->endBody() ?>
-</body>
 </html>
 <?php $this->endPage() ?>

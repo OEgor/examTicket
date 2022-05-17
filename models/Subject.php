@@ -64,4 +64,10 @@ class Subject extends \yii\db\ActiveRecord
     {
         return $this->hasMany(UserSubject::className(), ['subject_id' => 'subject_id']);
     }
+
+    public static function getSubjectTitle($subject_id)
+    {
+        //return $this->hasOne(Subject::className(), ['subject_id' => 'subject_id']);
+        return static::findOne(['subject_id' => $subject_id])->subject_title;
+    }
 }

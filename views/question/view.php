@@ -2,12 +2,14 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\Subject;
+use app\models\Question;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Question */
 
-$this->title = $model->question_id;
-$this->params['breadcrumbs'][] = ['label' => 'Questions', 'url' => ['index']];
+$this->title = 'Вопрос №'.$model->question_id;
+$this->params['breadcrumbs'][] = ['label' => 'Вопросы', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -25,17 +27,38 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'question_id',
-            'subject_id',
-            'question_difficult',
-            'question_content:ntext',
-            'question_type_id',
-            'creator_id',
-        ],
-    ]) ?>
+        
+    <?php
+        if(Yii::$app->user->identity->getStatusCode() == "ADMINISTRATOR")
+            echo DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    'question_id',
+                    'subject_id',
+                    'question_difficult',
+                    'question_content:ntext',
+                    'question_type_id',
+                    'creator_id',
+                ],
+            ]);
+        else
+            echo DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    //'question_id',
+                    [
+                        'label' => 'Предмет',
+                        'attribute' => 'subject_title',
+                        'value' => Subject::getSubjectTitle($model->subject_id)
+                    ],
+                    'question_difficult',
+                    'question_content:ntext',
+                    [
+                        'question_type_title',
+                    ]
+                    //'creator_id',
+                ],
+            ]);
+     ?>
 
 </div>

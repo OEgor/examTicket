@@ -62,19 +62,19 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'subjectTitle',
                         'value' => 'subject.subject_title'
                     ],
+                    //'question_difficult',
                     [
                         'label' => 'Сложность',
                         'attribute' => 'questionDifficult',
                         'value' => 'question_difficult'
                     ],
-                    //'question_difficult',
                     // 'question_content:ntext',
                     [
                         'label' => 'Вопрос',
                         'attribute' => 'questionContent',
                         'value' => 'question_content'
-                        //'question_type_id',
                     ],
+                    //'question_type_id',
                     [
                         'label' => 'Тип вопроса',
                         'attribute' => 'questionType',
